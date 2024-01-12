@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7038688351944473190}
   - component: {fileID: 6569261906294646440}
   - component: {fileID: 106676070990731986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
