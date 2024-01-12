@@ -27,8 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range (0,0.3f)] [Tooltip("The time the player can jump after leaving a plattform")]
     private float coyoteTimer; // player can jump a little while after not being grounded anymore
     private float currentCoyoteTimer;
-    [SerializeField] [Range(0, 20)] [Tooltip ("The Speed with which the player climbs a ladder")]
-    private float ladderClimbSpeed; // movementspeed when climbing ladders
+    [SerializeField]
     private bool canDoubleJump;
     private float xInput; // players x input
     private float yInput; // players y inpit
@@ -37,20 +36,6 @@ public class PlayerController : MonoBehaviour
     private bool isClimbingLadder;
 
     #endregion
-
-    [Space(30)]
-
-    #region combat-variables
-    [SerializeField] [Range(0, 2)] [Tooltip("Cooldown to attack again after attacking")]
-    private float attackCooldown; // cooldown stat of attack move
-    private float currentAttackCooldown; // 
-    [SerializeField] [Tooltip("Attack Box Dimensions ")]
-    private Vector2 attackBoxDimension; // dimensions of the box that checks if player hits an enemy
-    [SerializeField] [Tooltip("Position of the attack where the Attack Hit Box is cast")]
-    public Transform attackPos; // position on which the attack box-collider is checked
-    #endregion
-
-    [Space(30)]
 
     #region other variables
 
@@ -79,14 +64,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public PlayerState currentState = PlayerState.walking; // current Player State
 
-    [Space(30)]
 
     // components
     private Rigidbody2D rb;
     private Animator anim;
-    private ParticleSystem.EmissionModule particleEmission;
-    [SerializeField] [Tooltip("Rate at which particles are emitted")]
-    private float particleEmissionRate;
 
 
     #endregion
@@ -96,7 +77,16 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        if(LevelManager.Instance != null)
+        {
+            LevelManager.Instance.PlayerInstance = this.gameObject;
+
+            if (LevelManager.Instance.GetPlayerSpawnPos != Vector2.zero)
+                transform.position = LevelManager.Instance.GetPlayerSpawnPos;
+        }
+
         GetPlayerComponents();
+
 
     }
 
@@ -131,14 +121,8 @@ public class PlayerController : MonoBehaviour
         if (!canInteract) // if the player shouldn't be able to interact -> return 
             return;
 
-        if (isClimbingLadder) // if player is currently on a ladder 
-            rb.velocity = new Vector2(xInput * (ladderClimbSpeed / 2), 
-                Vector2.up.y * ladderClimbSpeed); // player moves Up with ladderClimbSpeed and moves Sidewards with half of
-                                                 // ladderClimbSpeed
-                                                                                                            
-        else // player sidewards movement velocity
-            if(currentState == PlayerState.walking) // if player is currently not attacking or hit
-                rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y); // x velocity is changed by xInput multiplied with moveSpeed
+        if(currentState == PlayerState.walking) // if player is currently not attacking or hit
+            rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y); // x velocity is changed by xInput multiplied with moveSpeed
 
 
         if (currentState == PlayerState.walking) // if player is not for example attacking
@@ -318,51 +302,42 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Animations()
     {
-        Flip();
-
-        if (xInput != 0)
-            anim.SetBool("isWalking", true);
-        else
-            anim.SetBool("isWalking", false);
-
-        if (rb.velocity == Vector2.zero)
-            particleEmission.rateOverTime = 0;
-        else if (rb.velocity.y < 0.1f && rb.velocity.y > -0.1f)
-            particleEmission.rateOverTime = particleEmissionRate;
-        else
-            particleEmission.rateOverTime = 0;
-
-
-
-
-        // anim.SetFloat("yVelocity", rb.velocity.y);
-
-
-        if (GroundCheck()) 
-        {
-            anim.SetBool("isJumping", false);
-            anim.SetBool("isFalling", false);
-        }
-        else
-        {
-            if (rb.velocity.y > 0)
-            {
-                anim.SetBool("isJumping", true);
-                anim.SetBool("isFalling", false);
-            }
-            else if (rb.velocity.y < 0)
-            {
-                anim.SetBool("isFalling", true);
-                anim.SetBool("isJumping", false);
-            }
-            else
-            {
-                anim.SetBool("isJumping", false);
-                anim.SetBool("isFalling", false);
-            }
-        }
-        
-            
+        // Flip();
+        // 
+        // if (xInput != 0)
+        //     anim.SetBool("isWalking", true);
+        // else
+        //     anim.SetBool("isWalking", false);
+        // 
+        // 
+        // // anim.SetFloat("yVelocity", rb.velocity.y);
+        // 
+        // 
+        // if (GroundCheck()) 
+        // {
+        //     anim.SetBool("isJumping", false);
+        //     anim.SetBool("isFalling", false);
+        // }
+        // else
+        // {
+        //     if (rb.velocity.y > 0)
+        //     {
+        //         anim.SetBool("isJumping", true);
+        //         anim.SetBool("isFalling", false);
+        //     }
+        //     else if (rb.velocity.y < 0)
+        //     {
+        //         anim.SetBool("isFalling", true);
+        //         anim.SetBool("isJumping", false);
+        //     }
+        //     else
+        //     {
+        //         anim.SetBool("isJumping", false);
+        //         anim.SetBool("isFalling", false);
+        //     }
+        // }
+        // 
+        //     
     }
 
     /// <summary>

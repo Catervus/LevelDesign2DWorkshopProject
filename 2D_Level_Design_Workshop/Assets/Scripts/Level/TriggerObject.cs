@@ -37,7 +37,7 @@ public class TriggerObject : MonoBehaviour
     {
         if (_other.gameObject.layer != playerCollisionLayer.DefaultValue)
             return;
-
+        Debug.Log("Raise Trigger Event! " + this.gameObject.name);
         triggerEvent?.RaiseEvent();
         if (setInactiveWhenTrigger)
             gameObject.SetActive(false);

@@ -124,7 +124,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 7
   m_Material: {fileID: 6200000, guid: 5ee012dfafb99174798d73633717a3cb, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -142,14 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c7439c76a354c479e2743f2664d1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9.58
-  jumpForce: 14.74
-  lowJumpMultiplier: 4.91
-  coyoteTimer: 0.1255
-  ladderClimbSpeed: 0
-  attackCooldown: 0
-  attackBoxDimension: {x: 0, y: 0}
-  attackPos: {fileID: 0}
+  moveSpeed: 13.1
+  jumpForce: 22.3
+  lowJumpMultiplier: 6
+  coyoteTimer: 0.025
+  canDoubleJump: 0
   checkBoxDimensions: {x: 0.33, y: 0.12}
   ladderBoxDimensions: {x: 0, y: 0}
   feetPos: {fileID: 1881446960}
@@ -166,7 +163,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   currentState: 0
-  particleEmissionRate: 0
 --- !u!1 &6271699548899480972
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +238,7 @@ SpriteRenderer:
   m_SortingOrder: 100
   m_Sprite: {fileID: 1837124044, guid: dfcd522e45bfd29439150deb94a9a28b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}

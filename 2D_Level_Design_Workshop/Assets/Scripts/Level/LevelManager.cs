@@ -24,10 +24,14 @@ public class LevelManager : MonoBehaviour
     public static Vector3 playerSpawnPos;
     public static bool checkPointHit;
 
+    public GameObject PlayerInstance { get; set; }
+
+    private static Vector2 playerCheckpointPos = Vector2.zero;
+
+    public Vector2 GetPlayerSpawnPos { get => playerCheckpointPos;}
 
     private void Awake()
     {
-
         if(instance == null)
         {
             instance = this;
@@ -36,6 +40,14 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void TurnOffPlayer()
+    {
+        if (PlayerInstance == null)
+            return;
+
+        PlayerInstance.SetActive(false);
     }
 
     public void SubscribeTriggerObject(TriggerObject _to)
@@ -53,14 +65,21 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void UpdatePlayerSpawnPos()
+    {
+        playerCheckpointPos = new Vector2((int)PlayerInstance.transform.position.x + 0.5f, (int)PlayerInstance.transform.position.y + 0.5f);
+    }
+
     public void ResetLevel()
     {
+        playerCheckpointPos = Vector2.zero;
         playerSpawnPos = Vector3.zero;
         checkPointHit = false;
     }
 
     public void LevelDone()
     {
+        playerCheckpointPos = Vector2.zero;
         Debug.Log("Level Done!");
         UpdateLevelDoneUICoinScore();
     }
