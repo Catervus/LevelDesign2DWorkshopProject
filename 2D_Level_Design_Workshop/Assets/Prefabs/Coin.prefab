@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8816427936854140437}
   - component: {fileID: 8816427936854140434}
   - component: {fileID: 8816427936854140435}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1ec19c8fd20c040b67b801ac60b7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerEvent: {fileID: 0}
-  setInactiveWhenTrigger: 1
+  triggerEvent: {fileID: 11400000, guid: 87f0573bb5f199a40a565e0ee3509236, type: 2}
+  setInactiveWhenTrigger: 0
+  setInactiveWhenTriggerWithPlayer: 1
   triggerObjType: 1
   playerCollisionLayer: {fileID: 11400000, guid: 74b86b4357e69264cb4d0ed927ab310c, type: 2}
 --- !u!61 &8816427936854140435

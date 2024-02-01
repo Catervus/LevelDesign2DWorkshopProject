@@ -18,6 +18,8 @@ public class TriggerObject : MonoBehaviour
 
     [SerializeField]
     bool setInactiveWhenTrigger = true;
+    [SerializeField]
+    bool setInactiveWhenTriggerWithPlayer = true;
 
     [SerializeField]
     E_TriggerObjectType triggerObjType;
@@ -35,10 +37,18 @@ public class TriggerObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D _other)
     {
-        if (_other.gameObject.layer != playerCollisionLayer.DefaultValue)
-            return;
-        Debug.Log("Raise Trigger Event! " + this.gameObject.name);
-        triggerEvent?.RaiseEvent();
+        if (_other.gameObject.layer == playerCollisionLayer.DefaultValue)
+        {
+            Debug.Log("Raise Trigger Event! OnTriggerEnter2D: " + this.gameObject.name);
+            triggerEvent?.RaiseEvent();
+            if (setInactiveWhenTriggerWithPlayer)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+        }
+
         if (setInactiveWhenTrigger)
             gameObject.SetActive(false);
 
@@ -46,13 +56,16 @@ public class TriggerObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _col)
     {
-        if (_col.gameObject.layer != playerCollisionLayer.DefaultValue)
-            return;
+        Debug.Log("Col: " + gameObject.name);
+        if (_col.gameObject.layer == playerCollisionLayer.DefaultValue)
+        {
+            Debug.Log("Raise Trigger Event! OnCollisionEnter2D: " + this.gameObject.name);
+            triggerEvent?.RaiseEvent();
+        }
 
-        if (this.enabled == false)
-            return;
-
-        triggerEvent?.RaiseEvent();
+        // if (this.enabled == false)
+        //     return;
+        
         if (setInactiveWhenTrigger)
             gameObject.SetActive(false);
     }

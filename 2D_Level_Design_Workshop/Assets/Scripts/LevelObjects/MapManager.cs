@@ -44,8 +44,9 @@ public class MapManager : MonoBehaviour
                     if (_objects[i].Tile == t)
                     {
                         // Spawn
+                        if(_objects[i].DestroyTileOnSpawn)
+                            DeleteSpawnedTileFromMap(_map, pos);
                         SpawnMapObject(_objects[i].Object, pos);
-                        DeleteSpawnedTileFromMap(_map, pos);
                     }
                 }
             }
@@ -77,6 +78,11 @@ public struct MapObject
     [SerializeField]
     private TileBase tile;
 
+    [SerializeField]
+    private bool destroyTileOnSpawn;
+
     public TileBase Tile { get => tile; }
     public GameObject Object { get => obj; }
+
+    public bool DestroyTileOnSpawn { get => destroyTileOnSpawn; }
 }

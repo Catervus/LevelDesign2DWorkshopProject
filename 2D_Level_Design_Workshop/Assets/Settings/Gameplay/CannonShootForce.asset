@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70537479b12dd14e8fa39a97fb7a0ef, type: 3}
   m_Name: CannonShootForce
   m_EditorClassIdentifier: 
-  RuntimeValue: 10
-  initialValue: 10
+  RuntimeValue: 6
+  initialValue: 6
