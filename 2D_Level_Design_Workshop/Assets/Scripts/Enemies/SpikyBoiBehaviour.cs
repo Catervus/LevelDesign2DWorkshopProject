@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpikyBoiBehaviour : EnemyBase
 {
 
-    private bool walkingLeft = true;
+    private bool goingLeft = true;
 
     [SerializeField]
     private Transform sideTriggerBoxTrans;
@@ -57,9 +57,9 @@ public class SpikyBoiBehaviour : EnemyBase
             if ((Vector2)transform.position != spawnPos)
             {
                 transform.position = spawnPos;
-                if(walkingLeft == false)
+                if(goingLeft == false)
                     transform.Rotate(0, 180f, 0);
-                walkingLeft = true;
+                goingLeft = true;
                 
             }
 
@@ -69,7 +69,7 @@ public class SpikyBoiBehaviour : EnemyBase
 
         if (CheckCollisionTriggerBox())
         {
-            walkingLeft = !walkingLeft;
+            goingLeft = !goingLeft;
             transform.Rotate(0, 180f, 0);
         }
 

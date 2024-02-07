@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 5082772014678977192}
   - component: {fileID: 6627456633295232530}
   - component: {fileID: 8650780333191035668}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpikyBoi
   m_TagString: Untagged
   m_Icon: {fileID: 0}

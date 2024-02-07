@@ -12,7 +12,6 @@ public class EnemyBase : MonoBehaviour
     [SerializeField]
     protected float yRangeThreshold = 7;
 
-
     protected void UpdateSpawnPos()
     {
         spawnPos = transform.position;
