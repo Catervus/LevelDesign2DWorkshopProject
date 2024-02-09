@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5925212141003578846}
   - component: {fileID: 5925212141003578847}
   - component: {fileID: 5925212141003578844}
+  - component: {fileID: 9031830890849278516}
   m_Layer: 10
   m_Name: Flying Boi
   m_TagString: Untagged
@@ -82,6 +83,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43651438, y: 0.48502612}
   m_EdgeRadius: 0
+--- !u!114 &9031830890849278516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925212141003578845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1ec19c8fd20c040b67b801ac60b7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerEvent: {fileID: 11400000, guid: e177a730de45fa1478c46e2ed26a935b, type: 2}
+  setInactiveWhenTrigger: 0
+  setInactiveWhenTriggerWithPlayer: 0
+  triggerObjType: 3
+  playerCollisionLayer: {fileID: 11400000, guid: 74b86b4357e69264cb4d0ed927ab310c, type: 2}
 --- !u!1 &5925212141417515342
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5925212141417515342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.919, y: 0, z: 0}
+  m_LocalPosition: {x: -0.42, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -183,9 +201,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 956963387
+  m_SortingLayer: 3
+  m_SortingOrder: 51
   m_Sprite: {fileID: -437622299, guid: dfcd522e45bfd29439150deb94a9a28b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

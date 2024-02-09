@@ -51,6 +51,18 @@ public class EnemyBase : MonoBehaviour
 
     }
 
+    protected virtual void SideMovement(float _speed)
+    {
+        transform.position += -transform.right * _speed * Time.deltaTime;
+
+    }
+
+    protected bool CheckCollisionTriggerBox(Vector3 _triggerboxpos, Vector2 _triggerboxsize, LayerMask _layermask)
+    {
+        Collider2D check = Physics2D.OverlapBox(_triggerboxpos, _triggerboxsize, 0, _layermask);
+        return check;
+    }
+
     protected bool CheckForRange(float _pointcoord01, float _pointcoord02, float _disthreshold)
     {
         float diff = 0;

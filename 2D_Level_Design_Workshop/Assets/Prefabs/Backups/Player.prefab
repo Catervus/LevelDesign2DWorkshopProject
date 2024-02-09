@@ -145,7 +145,7 @@ MonoBehaviour:
   moveSpeed: 13.1
   jumpForce: 22.3
   lowJumpMultiplier: 6
-  coyoteTimer: 0.025
+  coyoteTimer: 0.0311
   canDoubleJump: 0
   checkBoxDimensions: {x: 0.33, y: 0.12}
   ladderBoxDimensions: {x: 0, y: 0}
@@ -234,7 +234,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1055282465
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 100
   m_Sprite: {fileID: 1837124044, guid: dfcd522e45bfd29439150deb94a9a28b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

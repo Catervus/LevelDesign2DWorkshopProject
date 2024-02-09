@@ -6,6 +6,8 @@ public class FlyingBoiBehaviour : EnemyBase
 {
     private bool goingLeft = true;
 
+    private bool isDiving = false;
+
     [SerializeField]
     private Transform sideTriggerBoxTrans;
     [SerializeField]
@@ -26,6 +28,16 @@ public class FlyingBoiBehaviour : EnemyBase
 
     private void Update()
     {
+        if (Mathf.Abs(transform.position.x - LevelManager.Instance.PlayerInstance.transform.position.x) <= 4)
+            isDiving = true;
+        if (isDiving)
+        {
+            transform.position += -(transform.right + transform.up) * flySpeed.RuntimeValue * Time.deltaTime;
+            Debug.Log(gameObject.name + ": isDiving");
+
+            return;
+        }
+
         isActive = CheckForPlayerInSpawnRange();
         if (isActive == false)
         {
@@ -41,15 +53,14 @@ public class FlyingBoiBehaviour : EnemyBase
             return;
         }
 
-        Collider2D check = Physics2D.OverlapBox(sideTriggerBoxTrans.position, sideTriggerBoxDimensions, 0, obstacleLayer);
-        if (check)
+
+        if(CheckCollisionTriggerBox(sideTriggerBoxTrans.position, sideTriggerBoxDimensions, obstacleLayer))
         {
             goingLeft = !goingLeft;
             transform.Rotate(0, 180f, 0);
-            Debug.Log(gameObject.name + "side triggered! " + check.gameObject.name);
         }
 
-        transform.position += -transform.right * flySpeed.RuntimeValue * Time.deltaTime;
+        SideMovement(flySpeed.RuntimeValue);
 
         if (transform.position.x < spawnPos.x - maxDeviationXAxis)
         {

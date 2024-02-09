@@ -36,21 +36,6 @@ public class SpikyBoiBehaviour : EnemyBase
 
     void Update()
     {
-        // isActive = CheckForPlayerInRange();
-        // if (isActive == false)
-        // {
-        //     if((Vector2)transform.position != spawnPos)
-        //     {
-        //         if(CheckForPlayerInSpawnRange())
-        //         {
-        //             transform.position = spawnPos;
-        //         }
-        //         return;
-        //     }
-        // 
-        //     return;
-        // }
-
         isActive = CheckForPlayerInSpawnRange();
         if (isActive == false)
         {
@@ -67,22 +52,27 @@ public class SpikyBoiBehaviour : EnemyBase
         }
 
 
-        if (CheckCollisionTriggerBox())
+        if (CheckCollisionTriggerBox(sideTriggerBoxTrans.position, sideTriggerBoxDimensions, obstacleLayer) && !CheckCollisionTriggerBox(groundTriggerBoxTrans.position, groundTriggerBoxDimensions, groundLayer))
         {
             goingLeft = !goingLeft;
             transform.Rotate(0, 180f, 0);
         }
 
-        transform.position += -transform.right * walkSpeed.RuntimeValue * Time.deltaTime; 
+        SideMovement(walkSpeed.RuntimeValue);
     }
 
-    bool CheckCollisionTriggerBox()
+    bool CheckCollisionTriggerBox2()
     {
         bool check = Physics2D.OverlapBox(sideTriggerBoxTrans.position, sideTriggerBoxDimensions, 0, obstacleLayer);
         if (check)
             return true;
-
+        
+        {
+            return true;
+        }
         // return false;
+
+
         check = Physics2D.OverlapBox(groundTriggerBoxTrans.position, groundTriggerBoxDimensions, 0, groundLayer);
         Debug.Log("Check Ground: " + check);
         return (check == false);
