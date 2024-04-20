@@ -52,8 +52,9 @@ public class SpikyBoiBehaviour : EnemyBase
         }
 
 
-        if (CheckCollisionTriggerBox(sideTriggerBoxTrans.position, sideTriggerBoxDimensions, obstacleLayer) && !CheckCollisionTriggerBox(groundTriggerBoxTrans.position, groundTriggerBoxDimensions, groundLayer))
+        if (CheckCollisionTriggerBox(sideTriggerBoxTrans.position, sideTriggerBoxDimensions, obstacleLayer) || !CheckCollisionTriggerBox(groundTriggerBoxTrans.position, groundTriggerBoxDimensions, groundLayer))
         {
+            Debug.Log("Collision Trigger!");
             goingLeft = !goingLeft;
             transform.Rotate(0, 180f, 0);
         }
