@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class LevelManager : MonoBehaviour
     int coinScore = 0;
 
     // ~ Coin List ~
-    private List<TriggerObject> coinList = new List<TriggerObject>(); 
+    private List<TriggerObject> coinList = new List<TriggerObject>();
 
     [SerializeField]
     TMP_Text coinScoreText;
@@ -30,16 +31,22 @@ public class LevelManager : MonoBehaviour
 
     public Vector2 GetPlayerSpawnPos { get => playerCheckpointPos;}
 
+    private static int currentLevel = 0;
+
     private void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        // if(instance == null)
+        // {
+        //     instance = this;
+        // }
+        // else
+        // {
+        //     Destroy(this.gameObject);
+        // }
+
+
+        instance = this;
+        InitLevel();
     }
 
     public void TurnOffPlayer()
@@ -55,14 +62,16 @@ public class LevelManager : MonoBehaviour
         if(_to.GetTriggerObjType == E_TriggerObjectType.Coin)
         {
             if (!coinList.Contains(_to))
+            {
                 coinList.Add(_to);
+            }
             UpdateUICoinScore();
         }
         
     }
     public void InitLevel()
     {
-
+        coinList = new List<TriggerObject>();
     }
 
     public void UpdatePlayerSpawnPos()
