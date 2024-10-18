@@ -95,6 +95,10 @@ public class LevelManager : MonoBehaviour
 
     public void CollectCoin()
     {
+        // Debug.Log("OBJ Pos: " + _trans.position);
+        //GameObject go = _obj as GameObject;
+        //Debug.Log("Collected Coin Pos: " + go.transform.position);
+
         coinScore++;
         UpdateUICoinScore();
     }

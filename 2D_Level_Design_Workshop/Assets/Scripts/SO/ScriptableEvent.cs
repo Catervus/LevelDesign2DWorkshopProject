@@ -19,11 +19,12 @@ public class ScriptableEvent : ScriptableObject, ISerializationCallbackReceiver
             listeners.Remove(_listener);
     }
 
-    public void RaiseEvent()
+    public void RaiseEvent(Object _obj)
     {
+
         for (int i = 0; i < listeners.Count; i++)
         {
-            listeners[i].OnEventRaised();
+            listeners[i].OnEventRaised(_obj);
         }
     }
 

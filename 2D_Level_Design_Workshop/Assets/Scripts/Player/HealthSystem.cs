@@ -30,7 +30,7 @@ public class HealthSystem : MonoBehaviour
 
     private void EntityDeath()
     {
-        entityDeathEvent?.RaiseEvent();
+        entityDeathEvent?.RaiseEvent(null);
     }
 
 

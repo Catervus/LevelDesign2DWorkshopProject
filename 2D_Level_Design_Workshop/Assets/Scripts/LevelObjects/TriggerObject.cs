@@ -40,7 +40,7 @@ public class TriggerObject : MonoBehaviour
         if (_other.gameObject.layer == playerCollisionLayer.DefaultValue)
         {
             Debug.Log("Raise Trigger Event! OnTriggerEnter2D: " + this.gameObject.name);
-            triggerEvent?.RaiseEvent();
+            triggerEvent?.RaiseEvent(this.gameObject);
             if (setInactiveWhenTriggerWithPlayer)
             {
                 gameObject.SetActive(false);
@@ -60,7 +60,7 @@ public class TriggerObject : MonoBehaviour
         if (_col.gameObject.layer == playerCollisionLayer.DefaultValue)
         {
             Debug.Log("Raise Trigger Event! OnCollisionEnter2D: " + this.gameObject.name);
-            triggerEvent?.RaiseEvent();
+            triggerEvent?.RaiseEvent(this.gameObject);
         }
 
         // if (this.enabled == false)

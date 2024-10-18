@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private bool canInteract = true; // if the player opened the PauseMenu or collided with a AreaTransitioner (which loads a new Scene)
                                      // the player shouldn't be able to input for example an attack
 
+    private bool isGrounded = true;
     #endregion
     
 
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
     private void GetPlayerComponents()
     {
         rb = GetComponent<Rigidbody2D>();
-        //anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
         //particleEmission = GetComponentInChildren<ParticleSystem>().emission;
     }
 
@@ -104,9 +105,9 @@ public class PlayerController : MonoBehaviour
     {
         GetPlayerInput();
 
-        // Animations();
-
-        if (GroundCheck())
+        Animations();
+        isGrounded = GroundCheck();
+        if (isGrounded)
             currentCoyoteTimer = coyoteTimer;
 
         currentCoyoteTimer -= Time.deltaTime;
@@ -302,7 +303,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Animations()
     {
-        // Flip();
+
+        anim.SetFloat("yVelAbs", Mathf.Abs(rb.velocity.y));
+        anim.SetFloat("xInputAbs", Mathf.Abs(xInput));
+
+        anim.SetBool("isGrounded", isGrounded);
+        Flip();
         // 
         // if (xInput != 0)
         //     anim.SetBool("isWalking", true);

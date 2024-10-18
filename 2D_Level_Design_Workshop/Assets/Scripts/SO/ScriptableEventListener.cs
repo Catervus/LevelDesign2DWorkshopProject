@@ -9,7 +9,7 @@ public class ScriptableEventListener : MonoBehaviour
     private ScriptableEvent myEvent;
 
     [SerializeField]
-    UnityEvent eventResponse;
+    UnityEvent<Object> eventResponse;
 
     private void OnEnable()
     {
@@ -20,8 +20,13 @@ public class ScriptableEventListener : MonoBehaviour
         myEvent.UnRegister(this);
     }
 
-    public void OnEventRaised()
+    public void OnEventRaised(Object _obj)
     {
-        eventResponse.Invoke();
+        if (_obj != null)
+        {
+            GameObject go = _obj as GameObject;
+            eventResponse.Invoke(null);
+            return;
+        }
     }
 }
